@@ -1,7 +1,6 @@
-/Back-end/node_modules
-/Front-end/node_modules
-
-/Front-end/dist
-/Front-end/.parcel-cache
-/Front-end/.DS_Storage
+**/Back-end/node_modules
+**/Front-end/node_modules
+**/Front-end/dist
+**/Front-end/.parcel-cache
+**/Front-end/.DS_Storage
 

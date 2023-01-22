@@ -1,36 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent,useEffect, useState } from "react";
 
 
 const InputSide = () => {
-    const [file, setfile] = useState();
-    // let data = document.getElementById("file").files[0];
-    // let entry = document.getElementById("file").files[0];
-    // console.log('doupload',entry,data)
-    // fetch('uploads/' + encodeURIComponent(entry.name), {method:'PUT',body:data});
-    // alert('your file has been uploaded');
-    // location.reload();
-    async function getdata(){
-        const data = await fetch("http://localhost:8080/uploadfile");
-        const json = data.json();
-        console.log("apidata"+json);
-    }
+    const [file, setFile] = useState(null);
 
-    useEffect(()=>{
-        getdata()
-    }, [file])
+    // async function getdata(){
+    //     const data = await fetch("");
+    //     const json = data.json();
+    //     console.log("apidata"+json);
+    // }
+
+    // const handleFileChange = (e ) => {
+    //     if (e.target.files) {
+    //       setFile(e.target.files[0]);
+    //     }
+
+    //     console.log(e.target.files)
+    //   };
+    
+    
+
+    const handleUploadClick = async() => {
+      console.log(file);
+      const formData = new FormData();
+      formData.append('pos_file', file)
+
+      let res = await fetch('http://localhost:8080/uploadfile', {method:'POST', body:formData})
+      console.log(res)
+
+    };
 
     return(
         <div>
-            <form>
-                <input type="file" name="file" id="file" />
-                <button type="submit" onClick={(e)=>{
-                    let data = document.getElementById("file").files[0];
-                    fetch('http://localhost:8080/uploadfile' + encodeURIComponent(entry.name), {method:'PUT',body:data});
-
-                    
-                    e.preventDefault();
-                }}>Submit</button>
-            </form>
+            <div>
+                <input type="file" name="file" id="file" onChange={(e)=>{setFile(e.target.files[0])}} />
+                <button type="submit" onClick={
+                    handleUploadClick
+                }>Submit</button>
+            </div>
         </div>
     )
 }

@@ -4,20 +4,6 @@ import React, { ChangeEvent,useEffect, useState } from "react";
 const InputSide = () => {
     const [file, setFile] = useState(null);
 
-    // async function getdata(){
-    //     const data = await fetch("");
-    //     const json = data.json();
-    //     console.log("apidata"+json);
-    // }
-
-    // const handleFileChange = (e ) => {
-    //     if (e.target.files) {
-    //       setFile(e.target.files[0]);
-    //     }
-
-    //     console.log(e.target.files)
-    //   };
-    
     
 
     const handleUploadClick = async() => {
@@ -25,7 +11,7 @@ const InputSide = () => {
       const formData = new FormData();
       formData.append('pos_file', file)
 
-      let res = await fetch('http://localhost:8080/uploadfile', {method:'POST', body:formData})
+      let res = await fetch('http://localhost:8080/uploadfile', {method:'POST', body:formData}).then(console.log("no data found"));
       console.log(res)
 
     };
@@ -38,6 +24,7 @@ const InputSide = () => {
                     handleUploadClick
                 }>Submit</button>
             </div>
+            
         </div>
     )
 }

@@ -2,7 +2,7 @@ const { urlencoded } = require('express');
 const express = require('express');
 const upload = require('./utils/multerUtil')
 const readUploadedFile = require('./src/readFile')
-const fs = require('fs');
+
 const app = express();
 app.use(urlencoded({extended:true}))
 
